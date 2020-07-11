@@ -4,12 +4,6 @@ const csvFile = fs.readFileSync(__dirname + '/Transactions.csv');
 const parseCsv = require('csv-parse/lib/sync');
 const csv = parseCsv(csvFile);
 
-const sum = csv.reduce((accumulator, currentValue) => {
-  if (Number(currentValue[14])) return accumulator + Number(currentValue[14]);
-  return accumulator + 0;
-}, 0);
-
-console.log(csv[0]);
 const headers = csv.shift();
 
 const data = {};
