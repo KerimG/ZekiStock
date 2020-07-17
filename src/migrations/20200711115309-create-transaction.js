@@ -72,7 +72,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.NUMBER,
       },
-      totalCurrency: { allowNull: false, type: Sequelize.STRING },
+      totalCurrency: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       total: {
         allowNull: false,
         type: Sequelize.NUMBER,
