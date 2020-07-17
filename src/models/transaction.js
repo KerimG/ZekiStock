@@ -18,6 +18,22 @@ module.exports = (sequelize, DataTypes) => {
   Transaction.init(
     {
       transctionId: DataTypes.STRING,
+      date: DataTypes.DATE,
+      product: DataTypes.STRING,
+      isin: DataTypes.STRING,
+      market: DataTypes.STRING,
+      amount: DataTypes.NUMBER,
+      quoteCurrency: DataTypes.STRING,
+      quote: DataTypes.NUMBER,
+      localCurrency: DataTypes.STRING,
+      quoteInLocalCurrsency: DataTypes.NUMBER,
+      valueCurrency: DataTypes.STRING,
+      value: DataTypes.NUMBER,
+      fx: DataTypes.NUMBER,
+      feeCurrency: DataTypes.STRING,
+      fee: DataTypes.NUMBER,
+      totalCurrency: DataTypes.STRING,
+      total: DataTypes.NUMBER,
     },
     {
       sequelize,
