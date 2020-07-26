@@ -4,6 +4,7 @@
   "description": "A node starter project with common packages pre-installed.",
   "main": "index.js",
   "scripts": {
+    "migrate:dev": "cd src && sequelize --config config/sequelize.config.js db:migrate",
     "test": "jest --watch --colors tests/*",
     "dev": "nodemon src"
   },
