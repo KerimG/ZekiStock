@@ -1,7 +1,7 @@
 {
-  "name": "node-starter",
+  "name": "portfolio-dashboard",
   "version": "0.1.0",
-  "description": "A node starter project with common packages pre-installed.",
+  "description": "A tool to use as a stock trading dashboard similar to Wallmine's portfolio but with additional features.",
   "main": "index.js",
   "scripts": {
     "migrate:dev": "cd src && sequelize --config config/sequelize.config.js db:migrate",
