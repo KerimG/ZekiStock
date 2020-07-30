@@ -12,14 +12,14 @@
   "author": "Kerim Güney <kerim@gueney.io> (https://gueney.io)",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "jest": "^25.3.0",
-    "nodemon": "^2.0.3",
-    "prettier": "^2.0.4"
+    "eslint": "^7.5.0",
+    "jest": "^26.2.1",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "csv-parse": "^4.10.1",
-    "sequelize": "^6.3.2",
+    "csv-parse": "^4.11.1",
+    "sequelize": "^6.3.3",
     "sqlite3": "^5.0.0"
   }
 }
