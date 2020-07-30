@@ -1,6 +1,8 @@
+const join = require('path').join;
+
 module.exports = {
   development: {
-    storage: './db/dev.db.sqlite',
+    storage: join(__dirname, '..', 'db', 'dev.db.sqlite'),
     dialect: 'sqlite',
     logging: console.log,
   },
