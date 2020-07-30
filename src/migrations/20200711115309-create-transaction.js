@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      transctionId: {
+      transactionId: {
         type: Sequelize.STRING,
         eferences: {
           model: 'TransactionId', // name of Target model

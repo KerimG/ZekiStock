@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transaction.init(
     {
-      transctionId: DataTypes.STRING,
+      transactionId: DataTypes.STRING,
       date: DataTypes.DATE,
       product: DataTypes.STRING,
       isin: DataTypes.STRING,
