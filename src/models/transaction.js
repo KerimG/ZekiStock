@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       quoteInLocalCurrsency: DataTypes.NUMBER,
       valueCurrency: DataTypes.STRING,
       value: DataTypes.NUMBER,
-      fx: DataTypes.NUMBER,
+      exchangeRate: DataTypes.NUMBER,
       feeCurrency: DataTypes.STRING,
       fee: DataTypes.NUMBER,
       totalCurrency: DataTypes.STRING,

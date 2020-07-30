@@ -60,7 +60,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.NUMBER,
       },
-      fx: {
+      exchangeRate: {
         allowNull: false,
         type: Sequelize.NUMBER,
       },
