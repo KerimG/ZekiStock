@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       product: DataTypes.STRING,
       isin: DataTypes.STRING,
       market: DataTypes.STRING,
-      amount: DataTypes.NUMBER,
+      count: DataTypes.NUMBER,
       quoteCurrency: DataTypes.STRING,
       quote: DataTypes.NUMBER,
       localCurrency: DataTypes.STRING,

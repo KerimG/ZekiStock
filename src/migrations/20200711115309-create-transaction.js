@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      amount: {
+      count: {
         allowNull: false,
         type: Sequelize.NUMBER,
       },
@@ -90,7 +90,7 @@ module.exports = {
       },
     });
   },
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable('Transactions');
   },
 };
