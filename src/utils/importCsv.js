@@ -2,27 +2,61 @@ const fs = require('fs');
 const parseCsv = require('csv-parse/lib/sync');
 
 function convertCsvToObject(path) {
-  const csvFile = fs.readFileSync(path);
-  const csv = parseCsv(csvFile);
+  let csv;
+  try {
+    const csvFile = fs.readFileSync(path);
+    csv = parseCsv(csvFile);
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
 
-  const headers = csv.shift();
   const data = {};
+  const headers = [
+    'date',
+    'time',
+    'product',
+    'isin',
+    'market',
+    'count',
+    'quoteCurrency',
+    'quote',
+    'localCurrency',
+    'quoteInLocalCurrsency',
+    'valueCurrency',
+    'value',
+    'exchangeRate',
+    'feeCurrency',
+    'fee',
+    'totalCurrency',
+    'total',
+    'transactionId',
+  ];
 
-  csv.forEach((tx) => {
-    let currTx;
-    const currTxObj = {};
-    for (let i = tx.length - 1; i >= 0; i--) {
-      const element = tx[i];
-      if (i === tx.length - 1) {
-        currTx = element;
-        if (!data[currTx]) data[currTx] = [];
+  // get rid of header line
+  csv.shift();
+
+  for (let i = 0; i < csv.length; i++) {
+    const transactionArray = csv[i];
+    const transactionObject = {};
+    const lastElement = transactionArray.length - 1;
+    const orderId = transactionArray[lastElement];
+
+    // creating property with order-id as key and an array as value,
+    // because an order can have multiple partial transactions
+    if (!data[orderId]) data[orderId] = [];
+
+    // iterating backwards
+    for (let j = 0; j <= lastElement; j++) {
+      if (j === lastElement) {
+        // skip order-id column
         continue;
       }
-
-      currTxObj[headers[i]] = element;
+      transactionObject[headers[j]] = transactionArray[j];
     }
-    data[currTx].push(currTxObj);
-  });
+    data[orderId].push(transactionObject);
+  }
+
   return data;
 }
 
@@ -32,7 +66,7 @@ function writeCsvToDb(csv) {
 }
 
 async function writeTransactionsToDb(transactions) {
-  const { TransactionId, Transaction } = require('./models');
+  const { TransactionId, Transaction } = require('../models');
 
   for (const transactionId in transactions) {
     try {
@@ -44,26 +78,27 @@ async function writeTransactionsToDb(transactions) {
 
       if (tId === null) {
         await TransactionId.create({ transactionId });
-
-        transactions[transactionId].forEach(async (tx) => {
-          await Transaction.create({
-            transctionId: transactionId,
-            date: tx.Datum,
-            product: tx.Produkt,
-            isin: tx.ISIN,
-            market: tx['Börse'],
-            amount: tx.Anzahl,
-            quoteCurrency: tx['KursWährung'],
-            quote: tx.Kurs,
-            localCurrency: tx['Lokalwährung'],
-            quoteInLocalCurrsency: tx['Wert in Lokalwährun'],
-            valueCurrency: tx['Wertwährung'],
-            value: tx.Wert,
-            fx: tx.Wechselkurs,
-            feeCurrency: tx['Gebührwährung'],
-            fee: tx['Gebühr'],
-            totalCurrency: tx['Gesamtwährung'],
-            total: tx.Gesamt,
+        transactions[transactionId].forEach((tx) => {
+          Transaction.create({
+            transactionId,
+            date: new Date(
+              tx.date.split('-').reverse().join('-') + ' ' + tx.time
+            ),
+            product: tx.product,
+            isin: tx.isin,
+            market: tx.market,
+            count: tx.count,
+            quoteCurrency: tx.quoteCurrency,
+            quote: tx.quote,
+            localCurrency: tx.localCurrency,
+            quoteInLocalCurrsency: tx.quoteInLocalCurrsency,
+            valueCurrency: tx.valueCurrency,
+            value: tx.value,
+            exchangeRate: tx.exchangeRate,
+            feeCurrency: tx.feeCurrency,
+            fee: tx.fee,
+            totalCurrency: tx.totalCurrency,
+            total: tx.total,
           });
         });
       }
