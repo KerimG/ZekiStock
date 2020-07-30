@@ -6,16 +6,16 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: "eslint:recommended",
+  extends: 'eslint:recommended',
   parserOptions: {
     ecmaVersion: 2018,
   },
   rules: {
-    "linebreak-style": ["error", "unix"],
-    "no-console": "off",
-    "dot-notation": "error",
-    "no-var": "error",
-    "prefer-const": "error",
-    eqeqeq: ["error", "always", { null: "ignore" }],
+    'linebreak-style': ['error', 'unix'],
+    'no-console': 'off',
+    'dot-notation': 'error',
+    'no-var': 'error',
+    'prefer-const': 'error',
+    eqeqeq: ['error', 'always', { null: 'ignore' }],
   },
 };
