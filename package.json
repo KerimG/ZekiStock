@@ -20,6 +20,6 @@
   "dependencies": {
     "csv-parse": "^4.11.1",
     "sequelize": "^6.3.3",
-    "sqlite3": "^5.0.0"
+    "sqlite3": "^5.0.3"
   }
 }
